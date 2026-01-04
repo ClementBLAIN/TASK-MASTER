@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.taskmaster.controllers.CreateProjectPopupController"
+      spacing="20" maxWidth="600" styleClass="popup-container">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="📋" style="-fx-font-size: 24px;"/>
+        <Label text="Créer un nouveau projet" styleClass="popup-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✕" onAction="#handleCancel" styleClass="close-button"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Message d'erreur -->
+    <Label fx:id="errorLabel" styleClass="error-message"
+           wrapText="true" managed="false" visible="false"/>
+
+    <!-- Formulaire en grille -->
+    <GridPane hgap="15" vgap="18">
+        <columnConstraints>
+            <ColumnConstraints minWidth="120" prefWidth="120"/>
+            <ColumnConstraints minWidth="400" prefWidth="400"/>
+        </columnConstraints>
+
+        <!-- Nom du projet -->
+        <Label text="Titre :" GridPane.rowIndex="0" styleClass="form-label"/>
+        <TextField fx:id="projectNameField" promptText="Nom du projet"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <!-- Description -->
+        <Label text="Description :" GridPane.rowIndex="1" styleClass="form-label"/>
+        <TextArea fx:id="projectDescriptionArea" promptText="Description du projet..."
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  prefRowCount="4" wrapText="true"/>
+
+        <!-- Date de début -->
+        <Label text="Date début :" GridPane.rowIndex="2" styleClass="form-label"/>
+        <DatePicker fx:id="startDatePicker"
+                    GridPane.columnIndex="1" GridPane.rowIndex="2"
+                    prefWidth="200"/>
+
+        <!-- Date de fin -->
+        <Label text="Date fin :" GridPane.rowIndex="3" styleClass="form-label"/>
+        <DatePicker fx:id="endDatePicker"
+                    GridPane.columnIndex="1" GridPane.rowIndex="3"
+                    prefWidth="200"/>
+
+        <!-- Statut -->
+        <Label text="Statut :" GridPane.rowIndex="4" styleClass="form-label"/>
+        <ComboBox fx:id="statusComboBox"
+                  GridPane.columnIndex="1" GridPane.rowIndex="4"
+                  prefWidth="200"/>
+
+        <!-- Chef de projet -->
+        <Label text="Assigné à :" GridPane.rowIndex="5" styleClass="form-label"/>
+        <ComboBox fx:id="managerComboBox"
+                  GridPane.columnIndex="1" GridPane.rowIndex="5"
+                  prefWidth="300"/>
+    </GridPane>
+
+    <!-- Boutons -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <padding>
+            <Insets top="10" right="0" bottom="0" left="0"/>
+        </padding>
+        <Button text="Annuler" onAction="#handleCancel" styleClass="button, secondary"/>
+        <Button text="Créer" onAction="#handleCreateProject"/>
+    </HBox>
+</VBox>

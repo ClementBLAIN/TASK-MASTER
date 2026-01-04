@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.taskmaster.controllers.AdminDashboardController"
+            prefWidth="1200" prefHeight="700">
+
+    <!-- MENU LATERAL GAUCHE -->
+    <left>
+        <VBox spacing="0" styleClass="sidebar" prefWidth="250">
+            <padding>
+                <Insets top="20" right="0" bottom="20" left="0"/>
+            </padding>
+
+            <!-- En-tête -->
+            <VBox alignment="CENTER" spacing="10">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="TASKMASTER" styleClass="title"/>
+                <Label fx:id="welcomeLabel" text="Admin" styleClass="subtitle"/>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Boutons de navigation -->
+            <VBox spacing="5">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <Button text="📊 Tableau de bord" onAction="#showDashboard"
+                        maxWidth="Infinity" styleClass="nav-button, nav-button-active"/>
+
+                <Button text="👥 Utilisateurs" onAction="#showUsers"
+                        maxWidth="Infinity" styleClass="nav-button"/>
+
+                <Button text="📁 Projets" onAction="#showProjects"
+                        maxWidth="Infinity" styleClass="nav-button"/>
+
+                <Button text="✅ Tâches" onAction="#showTasks"
+                        maxWidth="Infinity" styleClass="nav-button"/>
+
+                <Separator/>
+
+                <Button text="👤 Mon profil" onAction="#showProfile"
+                        maxWidth="Infinity" styleClass="nav-button"/>
+
+                <Button text="🚪 Déconnexion" onAction="#handleLogout"
+                        maxWidth="Infinity" styleClass="button, danger"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CONTENU CENTRAL -->
+    <center>
+        <VBox spacing="20" styleClass="content-area">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="Tableau de Bord Administrateur" styleClass="page-title"/>
+
+            <!-- Statistiques (Cartes) -->
+            <HBox spacing="20">
+                <VBox spacing="10" styleClass="stat-card, stat-card-blue" HBox.hgrow="ALWAYS">
+                    <Label text="👥 Utilisateurs" styleClass="stat-label"/>
+                    <Label fx:id="userCountLabel" text="5" styleClass="stat-value"/>
+                    <Label text="Total" styleClass="stat-subtitle"/>
+                </VBox>
+
+                <VBox spacing="10" styleClass="stat-card, stat-card-green" HBox.hgrow="ALWAYS">
+                    <Label text="📁 Projets Actifs" styleClass="stat-label"/>
+                    <Label fx:id="projectCountLabel" text="2" styleClass="stat-value"/>
+                    <Label text="En cours" styleClass="stat-subtitle"/>
+                </VBox>
+
+                <VBox spacing="10" styleClass="stat-card, stat-card-orange" HBox.hgrow="ALWAYS">
+                    <Label text="✅ Tâches" styleClass="stat-label"/>
+                    <Label fx:id="taskCountLabel" text="1" styleClass="stat-value"/>
+                    <Label text="En cours" styleClass="stat-subtitle"/>
+                </VBox>
+            </HBox>
+
+            <!-- Tâches urgentes -->
+            <VBox spacing="15" styleClass="card" VBox.vgrow="ALWAYS">
+                <Label text="🔥 Tâches Urgentes" styleClass="section-title"/>
+
+                <TableView fx:id="urgentTasksTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="taskTitleColumn" text="Titre" prefWidth="300"/>
+                        <TableColumn fx:id="taskProjectColumn" text="Projet" prefWidth="200"/>
+                        <TableColumn fx:id="taskAssignedColumn" text="Assigné à" prefWidth="200"/>
+                        <TableColumn fx:id="taskDueDateColumn" text="Date limite" prefWidth="150"/>
+                        <TableColumn fx:id="taskStatusColumn" text="Statut" prefWidth="120"/>
+                    </columns>
+                    <!-- ⭐ CORRECTION ⭐ -->
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

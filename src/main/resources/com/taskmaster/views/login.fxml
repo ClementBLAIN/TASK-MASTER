@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.taskmaster.controllers.LoginController"
+      alignment="CENTER"
+      spacing="20"
+      styleClass="root">
+
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <!-- Carte de connexion stylée -->
+    <VBox spacing="25" styleClass="card" alignment="CENTER" maxWidth="350">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <!-- En-tête -->
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="TaskMaster" styleClass="title"/>
+            <Label text="Connexion" styleClass="section-title"/>
+        </VBox>
+
+        <!-- Formulaire de connexion -->
+        <VBox spacing="15">
+            <!-- Nom d'utilisateur -->
+            <VBox spacing="8">
+                <Label text="Nom d'utilisateur" styleClass="form-label"/>
+                <TextField fx:id="usernameField"
+                           promptText="Entrez votre nom d'utilisateur"
+                           onAction="#handleLogin"/>
+            </VBox>
+
+            <!-- Mot de passe -->
+            <VBox spacing="8">
+                <Label text="Mot de passe" styleClass="form-label"/>
+                <PasswordField fx:id="passwordField"
+                               promptText="Entrez votre mot de passe"
+                               onAction="#handleLogin"/>
+            </VBox>
+
+            <!-- Message d'erreur (caché par défaut) -->
+            <Label fx:id="errorLabel"
+                   text=""
+                   styleClass="error-message"
+                   visible="false"
+                   managed="false"
+                   wrapText="true"/>
+
+            <!-- Bouton de connexion -->
+            <Button fx:id="loginButton"
+                    text="Se connecter"
+                    onAction="#handleLogin"
+                    maxWidth="Infinity"
+                    styleClass="button"/>
+
+            <!-- Aide pour les tests -->
+            <Label text="Test : admin / password123"
+                   styleClass="stat-subtitle"
+                   alignment="CENTER"
+                   maxWidth="Infinity"/>
+        </VBox>
+    </VBox>
+</VBox>
